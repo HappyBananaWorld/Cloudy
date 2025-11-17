@@ -32,6 +32,12 @@ class IndexController extends Controller
             mkdir($uploadDir, 0755, true);
         }
 
+        $cacheDir = storage_path('tus');
+if (!file_exists($cacheDir)) {
+    mkdir($cacheDir, 0755, true);
+}
+
+
         $server = new Server('file');
 
         $server->setApiPath('/tus')
