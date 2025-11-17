@@ -7,8 +7,19 @@ use TusPhp\Tus\Server;
 use TusPhp\Cache\FileStore;
 use Illuminate\Support\Facades\File;
 
+ini_set('upload_max_filesize', '1G');
+ini_set('post_max_size', '1G');
+ini_set('memory_limit', '1G'); 
+
 class IndexController extends Controller
 {
+
+    public function __construct(){
+        ini_set('upload_max_filesize', '1G');
+ini_set('post_max_size', '1G');
+ini_set('memory_limit', '1G'); 
+    }
+
 
     public function index(Request $request)
     {
