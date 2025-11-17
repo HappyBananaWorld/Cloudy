@@ -9,7 +9,8 @@ use Illuminate\Support\Facades\File;
 
 class IndexController extends Controller
 {
-    public function __construct(Request $request)
+
+    public function index(Request $request)
     {
         $kac = $request->input('kac');
         $token = env('APP_TOKEN');
@@ -17,10 +18,6 @@ class IndexController extends Controller
         if($kac != $token){
             abort(500);
         }
-    }
-
-    public function index()
-    {
         return view('index');
     }
 
@@ -51,8 +48,14 @@ if (!file_exists($cacheDir)) {
         $response->send();
     }
 
-    public function list()
+    public function list(Request $request)
     {
+         $kac = $request->input('kac');
+        $token = env('APP_TOKEN');
+
+        if($kac != $token){
+            abort(500);
+        }
         $directory = public_path('uploads'); // مسیر public/uploads
         $files = File::files($directory); // گرفتن لیست فایل‌ها
 
